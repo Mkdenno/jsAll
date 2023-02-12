@@ -24,7 +24,7 @@ function firstNonConsecutive (arr) {
 
 
 
-    
+
     function noOdds( values ){
         // Return all non-odd values
         // return values.filter(val=>val%2===0)
@@ -72,3 +72,53 @@ function firstNonConsecutive (arr) {
         })
         return newObj
     }
+
+
+
+
+//     Given a lowercase string that has alphabetic characters only and no spaces, return the highest value of consonant substrings. Consonants are any letters of the alphabet except "aeiou".
+
+// We shall assign the following values: a = 1, b = 2, c = 3, .... z = 26.
+
+// For example, for the word "zodiacs", let's cross out the vowels. We get: "z o d ia cs"
+
+function solve(s) {
+    return Math.max(...s.replace(/[aeiou]+/g, ' ').trim().split(' ').map( addUpString))
+   };
+   
+   function charToValue(c){
+     return c.charCodeAt(0) - 96;
+   }
+   function addUpString(str){
+     return str.split('').map(charToValue).reduce((acc, item) => acc += item, 0);
+   }
+
+//    Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+
+function spinWords(words){
+    return words.split(' ').map(word => word.length >=5 ? reverseStr(word) : word).join(' ')
+    
+  }
+  
+  function reverseStr(str){
+    return str.split('').reverse().join('')
+  }
+  
+
+//   Write a method that takes an array of consecutive (increasing) letters as input and that returns the missing letter in the array.
+
+// You will always get an valid array. And it will be always exactly one letter be missing. The length of the array will always be at least 2.
+// The array will always contain letters in only one case.
+
+// Example:
+
+function findMissingLetter(array){
+    for (let i=0; i<array.length ; i++){
+      const curr=array[i].charCodeAt(0)
+      const next=array[i+1].charCodeAt(0)
+      
+      if(curr +1 !==next){
+        return String.fromCharCode(curr + 1)
+      }
+    }
+  }

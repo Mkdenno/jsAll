@@ -122,3 +122,177 @@ function findMissingLetter(array){
       }
     }
   }
+
+  // Write an algorithm that will identify valid IPv4 addresses in dot-decimal format. IPs should be considered valid if they consist of four octets, with values between 0 and 255, inclusive.
+  function isValidIP(str) {
+    return str.split('.').filter(isValidNum).length === 4;
+  }
+  
+  function isValidNum(n){
+    if(/^0/.test(n) && +n !==0 || n ==='00' || n ==='000') return false
+    return (+n >=0) && (+n <= 255) && (/^\d{1,3}$/.test(n));
+  }
+
+  // checking an existennce of a value in array
+  array.indexOf(elem) >-1
+
+
+
+  // We have defined a function, filteredArray, which takes arr, a nested array, and elem as arguments, and returns a new array. elem represents an element that may or may not be present on one or more of the arrays nested within arr. Modify the function, using a for loop, to return a filtered version of the passed array such that any array nested within arr containing elem has been removed.
+
+  function filteredArray(arr, elem) {
+    let newArr = [];
+    // Only change code below this line
+    for(let i=0; i<arr.length; i++){
+      if(!elementExist (arr[i], elem)){
+         newArr.push(arr[i])
+      }
+    }
+  
+    // Only change code above this line
+    return newArr;
+  }
+  function elementExist(arr, elem){
+    return arr.indexOf(elem) >-1
+  }
+  
+  console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));
+
+
+
+  // algorithing Scripting
+
+
+  // returning longest word
+  function findLongestWordLength(str) {
+    let max=0
+     const arr=str.split(' ')
+     for(let i=0; i<arr.length; i++){
+       if(arr[i].length > max){
+         max=arr[i].length
+  
+  
+       }
+     }
+  
+    return max
+  }
+  
+  console.log(findLongestWordLength("The quick brown fox jumped over the lazy dog"));
+
+
+
+
+//   Return an array consisting of the largest number from each provided sub-array. For simplicity, the provided array will contain exactly 4 sub-arrays.
+
+// Remember, you can iterate through an array with a simple for loop, and access each member with array syntax arr[i].
+
+function largestOfFour(arr) {
+  let arrayMax=[]
+
+  for(let i=0; i<arr.length; i++){
+    let max = -Infinity;
+    for(let j=0; j<arr[i].length; j++){
+      if(arr[i][j] > max){
+        max =arr[i][j]
+      }
+    }
+    arrayMax.push(max)
+  }
+  return arrayMax;
+}
+
+console.log(largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]));
+
+// Repeat a given string str (first argument) for num times (second argument). Return an empty string if num is not a positive number. For the purpose of this challenge, do not use the built-in .repeat() method.
+
+
+function repeatStringNumTimes(str, num) {
+  if(num < 0) return ""
+  let finalStr=''
+  for(let i=0; i<num; i++){
+    finalStr +=str
+  }
+  return finalStr;
+
+}
+
+console.log(repeatStringNumTimes("abc", 3));
+
+
+//Truncate a string (first argument) if it is longer than the given maximum string length (second argument). Return the truncated string with a ... ending.
+
+function truncateString(str, num) {
+  let final=''
+  if(str.length >num){
+    final=str.slice(0,num)+ '...'
+  }
+  return final;
+}
+
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8));
+
+
+// Return the provided string with the first letter of each word capitalized. Make sure the rest of the word is in lower case.
+
+// For the purpose of this exercise, you should also capitalize connecting words like the and of.
+
+
+function titleCase(str) {
+  return str.split(' ').map(elem=>elem[0].toUpperCase() + elem.slice(1).toLowerCase()).join(' ')
+}
+
+console.log(titleCase("I'm a little tea pot"));
+
+//Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+
+function chunkArrayInGroups(arr, size) {
+  let index=0;
+  let innerArr=[]
+  let finalArr=[]
+
+  for(let i=0; i<arr.length; i++){
+    innerArr.push(arr[i])
+    index++
+
+  if(index===size){
+    finalArr.push(innerArr)
+    innerArr=[]
+    index=0
+
+  }
+    }
+    if(innerArr.length>0){
+      finalArr.push(innerArr)
+    }
+  return finalArr;
+}
+
+console.log(chunkArrayInGroups([ "a","b", "c", "d"], 2));
+
+// console.log(ownProps) would display ["name"] in the console, and console.log(prototypeProps) would display ["numLegs"].
+
+
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype.numLegs = 4;
+
+let beagle = new Dog("Snoopy");
+
+let ownProps = [];
+let prototypeProps = [];
+
+// Only change code below this line
+
+for(let property in beagle){
+  if(beagle.hasOwnProperty(property)){
+    ownProps.push(property)
+  }
+  else{
+    prototypeProps.push(property)
+  }
+}
+console.log(ownProps)
+console.log(prototypeProps)
